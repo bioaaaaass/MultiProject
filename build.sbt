@@ -8,9 +8,8 @@ lazy val `multiprojects` = (project in file(".")).enablePlugins(PlayScala).depen
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-//    cache ,
+    cache ,
 //    ws,
-//    specs2 % Test,
     "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test,
     "com.typesafe.slick" %% "slick" % "3.1.1",
     "com.typesafe.play" %% "play-slick" % "1.1.1",
