@@ -38,12 +38,13 @@ class CoffeesDao @Inject()(dBProvider: DBProvider)(implicit executionContext: Ex
     }
 
     def readAllCoffees = {
-        dBProvider.dbRun(
-            Coffees.result
-        ).map(_.foreach{
-            case (name, supID, price, sales, total) =>
-                println("  " + name + "\t" + supID + "\t" + price + "\t" + sales + "\t" + total)
-        })
+        // error
+//        dBProvider.dbRun(
+//            Coffees.result
+//        ).map(_.foreach{
+//            case (name, supID, price, sales, total) =>
+//                println("  " + name + "\t" + supID + "\t" + price + "\t" + sales + "\t" + total)
+//        })
         // Equivalent SQL code:
         // select COF_NAME, SUP_ID, PRICE, SALES, TOTAL from COFFEES
     }

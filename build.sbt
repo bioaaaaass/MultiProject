@@ -8,15 +8,19 @@ lazy val `multiprojects` = (project in file(".")).enablePlugins(PlayScala).depen
 scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-    cache ,
-//    ws,
+    cache,
+    //    ws,
     "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.0-RC1" % Test,
     "com.typesafe.slick" %% "slick" % "3.1.1",
     "com.typesafe.play" %% "play-slick" % "1.1.1",
     "com.typesafe.play" %% "play-slick-evolutions" % "1.1.1",
     "mysql" % "mysql-connector-java" % "5.1.38",
     "org.slf4j" % "log4j-over-slf4j" % "1.7.21",
-    "joda-time" % "joda-time" % "2.9.3"
+    "joda-time" % "joda-time" % "2.9.3",
+    "com.typesafe.akka" %% "akka-actor" % "2.4.16",
+    "com.typesafe.akka" %% "akka-stream" % "2.4.16",
+    "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.16",
+    "com.typesafe.akka" %% "akka-testkit" % "2.4.16"
 )
 
 //unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )
