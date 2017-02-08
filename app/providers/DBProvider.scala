@@ -15,6 +15,9 @@ import scala.concurrent.Future
 @Singleton
 class DBProvider @Inject()(databaseConfigProvider: DatabaseConfigProvider) {
 
+    // In the body of the application we create a Database object which specifies how to connect to a database.
+    // In most cases you will want to configure database connections with Typesafe Config in your application.conf
+
     lazy val defaultDB = databaseConfigProvider.get[JdbcProfile]
 
     def generateUUID = java.util.UUID.randomUUID().toString.replace("-", "")
@@ -25,4 +28,14 @@ class DBProvider @Inject()(databaseConfigProvider: DatabaseConfigProvider) {
 
     def dbRun[R](a: DBIOAction[R, NoStream, Nothing]): Future[R] = defaultDB.db.run(a)
 
+
+    /**
+      * A Database object usually manages a thread pool and a connection pool.
+      * You should always shut it down properly when it is no longer needed
+      * (unless the JVM process terminates anyway).
+      */
+    /**
+      * Action.seq, which can concatenate any number of Actions, discarding the return values
+      * (i.e. the resulting Action produces a result of type Unit).
+      */
 }
