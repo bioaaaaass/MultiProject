@@ -1,9 +1,9 @@
-package akkas
+package akkas.streams
 
-import akka.{Done, NotUsed}
 import akka.actor.ActorSystem
-import akka.stream.{ActorMaterializer, ClosedShape}
 import akka.stream.scaladsl.{Broadcast, Flow, GraphDSL, Keep, RunnableGraph, Sink, Source}
+import akka.stream.{ActorMaterializer, ClosedShape}
+import akka.{Done, NotUsed}
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -26,6 +26,8 @@ object SendToDB extends App {
     val intToEvent: Flow[Int, DB.Event, NotUsed] = Flow[Int].map(i => DB.Event(s"Event $i"))
 
     val printlnSink: Sink[Any, Future[Done]] = Sink.foreach(println)
+    // Whilst ignoring them doesn’t sound very useful,
+    // this actually runs them before ignoring whatever they return.
     val dbSink = Flow[DB.Event].map(DB.persistEvent).toMat(Sink.ignore)(Keep.right).named("dbSink")
     val graph = RunnableGraph.fromGraph(GraphDSL.create(){ implicit builder: GraphDSL.Builder[NotUsed] =>
         import GraphDSL.Implicits._

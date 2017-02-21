@@ -1,9 +1,9 @@
-package akkas
+package akkas.streams
 
-import akka.{Done, NotUsed}
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{Sink, Source}
+import akka.{Done, NotUsed}
 
 import scala.concurrent.Future
 
